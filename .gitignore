@@ -1,0 +1,6 @@
+# Raw source material (830MB of originals) — kept locally, not tracked.
+# Web-optimized versions live in assets/img/ and ARE tracked.
+source-material/
+
+.DS_Store
+*.log
