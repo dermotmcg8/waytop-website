@@ -1,6 +1,19 @@
 # Raw source material (830MB of originals) — kept locally, not tracked.
-# Web-optimized versions live in assets/img/ and ARE tracked.
+# Web-optimized versions live in public/img/ and ARE tracked.
 source-material/
 
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+/build
+
+# misc
 .DS_Store
 *.log
+.env*.local
+next-env.d.ts

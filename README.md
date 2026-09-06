@@ -1,33 +1,49 @@
 # WAYTOP 蔚道商贸 — Website
 
-Single-page marketing site for WAYTOP (蔚道商贸), a premium importer of live seafood — flagship European/Irish blue lobster, plus Boston lobster, brown crab, toothfish, salmon, tiger prawn, coral trout, and premium wagyu.
+Marketing site for WAYTOP (蔚道商贸), a premium importer of live seafood — flagship European/Irish blue lobster, plus Boston lobster, brown crab, toothfish, salmon, tiger prawn, coral trout, and premium wagyu.
 
 Founder: David / 朱蔚. Trading since 2015; controls ~90% of the UK & Ireland blue-lobster supply chain.
+
+## Stack
+
+- **Next.js 14** (App Router) + React 18 + TypeScript
+- Static, no backend. Fully exportable.
+- Bilingual, **English default** (`/`) with Chinese (`/zh`); language toggle in the nav.
+- Each locale is fully monolingual — no mixed-language copy.
 
 ## Structure
 
 ```
-index.html            # the site (self-contained: inline CSS + JS)
-assets/img/           # web-optimized photography (~4MB total) — tracked
-source-material/      # 830MB of original photos + docs — .gitignored, local only
+app/
+  layout.tsx        # root layout, metadata, favicon
+  page.tsx          # English homepage (/)
+  zh/page.tsx       # Chinese homepage (/zh)
+  globals.css       # all styling (dark, premium theme)
+components/
+  SeafoodSite.tsx   # the whole page, takes lang="en" | "zh"
+lib/
+  content.ts        # bilingual dictionary + product data
+public/
+  img/              # web-optimized photography (~4MB) — tracked
+  waytop-logo.svg   # brand logo (white, for dark nav)
+source-material/    # 830MB of originals + docs — .gitignored, local only
 ```
 
-## Local preview
-
-Open `index.html` in a browser, or:
+## Develop
 
 ```
-python3 -m http.server 8080   # then visit http://localhost:8080
+npm install
+npm run dev      # http://localhost:3000  (English; /zh for Chinese)
+npm run build    # production build
 ```
 
 ## Deploy
 
-Static site — host anywhere (GitHub Pages, Vercel, Netlify, Alibaba OSS).
-For GitHub Pages: Settings → Pages → deploy from `main` / root.
+Zero-config on **Vercel** (import the repo). Also works on Netlify, or as a
+static export (`output: 'export'` in next.config.mjs) to any static host / Alibaba OSS.
 
-## Notes
+## Before launch — needs David's input
 
-- Content in Simplified Chinese (primary market), English brand accents.
-- Contact form is front-end only — wire to an endpoint (Formspree / backend) before launch.
-- Placeholder contact details (email, phone) need David's real details.
-- Product country-of-origin tags are indicative — confirm with David per SKU.
+- **Real contact details** — email/phone/WeChat are placeholders (`info@waytop.com`).
+- **Contact form** is front-end only — wire to Formspree or a backend to receive submissions.
+- **Product country-of-origin tags** are indicative — confirm per SKU.
